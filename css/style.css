@@ -1,0 +1,43 @@
+html{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #000000;
+    height: 100%;
+}
+body{
+    background-color: #ff41b0;
+    
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.square_1{
+    margin: 2em;
+    z-index: 3;
+    width: 95em;
+    height: 40em;
+    background-color: #ffffff;
+    z-index: 1;
+    border: solid 2.5em red;
+    border-image: url('/storage/img/easter-bunny-rabbit-svgrepo-com.svg') space;
+}
+img{
+    width: 15em;
+}
+button{
+    width: 5em;
+    border-radius: 3em;
+    background-color: #ff41b0;
+    border: solid 0.2em #e7118e;
+    color: #ffffff;
+    font-weight: 600;
+}
