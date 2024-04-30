@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="https://www.svgrepo.com/show/422665/cards-game-casino.svg" type="image/x-icon">
 </head>
-<body>
-    
+<body id="body_style">
     <div class="square_1">
+
         <div id="menu">
+            <span id="white" class="title">White</span>
+            <span id="jack" class="title">Jack</span>
         </div>
         <div id="logo">
             <svg class="logoBun" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"class="iconify iconify--noto" preserveAspectRatio="xMidYMid meet" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -27,12 +29,10 @@
             <br><button id="showRules" class="menu_button" onclick="fetchRules()">Rules</button>
             </br>
         </div>
-        <div id="cards">
+        <div id="cards"></div>
+        <div id="cardsHouse"></div>
+        <div id="rulesCont"></div>
 
-        </div>
-        <div id="rulesCont">
-            
-        </div>
     </div>
 </body>
     <script src="/js/script.js"></script>
