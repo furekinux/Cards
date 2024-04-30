@@ -1,4 +1,5 @@
 function fetchDeck(){
+    document.getElementById("body_style").style.background = "#a70808";
     let url = "https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
     let xhr = new XMLHttpRequest();
     xhr.open("GET",url,true);
@@ -9,7 +10,7 @@ function fetchDeck(){
             newButtons = document.getElementById("buttons")
             newButtons.innerHTML=`
                 <button id="draw" onclick="drawCard()">Draw</button>
-                <button id="play" onclick="playCard()">Play</button>
+                <button id="stand" onclick="standCard()">Stand</button>
                 <button id="reset" onclick="resetGame()">Reset</button>`
             let url = `https://deckofcardsapi.com/api/deck/${response.deck_id}/draw/?count=2`
             console.log(response.deck_id)
@@ -27,7 +28,7 @@ function fetchDeck(){
             if (this.readyState === 4 && this.status === 200){
                 let response = JSON.parse(this.responseText)
                 console.log(response)
-                displayCards(response)
+                disstandCards(response)
             }else if(this.readyState === 4){
                 console.log("Error :(",this.statusText)
             }
@@ -44,10 +45,10 @@ function fetchRules(){
     let rules=document.getElementById("rulesCont")
     rules.innerHTML=`
     <div class="rules" id="rules">
-        <h2>Rules</h2>
-        <li>hi</li>
-        <li>hi</li>
-        <li>hi</li>
+        <h2>- - - Rules - - -</h2>
+        <li>Face cards are worth 10.</li>
+        <li>Ace is worth 11.</li>
+        <li>If </li>
         <li>hi</li>
         <li>hi</li>
     </div>
@@ -68,7 +69,7 @@ function drawCard(){
         if (this.readyState === 4 && this.status === 200){
             let response = JSON.parse(this.responseText)
             console.log(response)
-            displayCards(response)
+            disstandCards(response)
         }else if(this.readyState === 4){
             console.log("Error :(",this.statusText)
         }
@@ -76,9 +77,13 @@ function drawCard(){
     xhr.send();
 }
 
+function standCard(){
+
+}
+
 let array_p1 = []
 
-function displayCards(data){
+function disstandCards(data){
     console.log(data.cards)
     arraysito = data.cards
     arraysito.forEach(card => {
@@ -99,6 +104,10 @@ function displayCards(data){
 }
 
 function resetGame(){
+    array_p1 = []
+
+    document.getElementById("body_style").style.background = "#ee7bbe";
+
     let newButtons = document.getElementById("buttons")
     newButtons.innerHTML=`
     <button id="start" class="menu_button" onclick="fetchDeck()">Start!</button>
@@ -113,7 +122,8 @@ function resetGame(){
     rules.innerHTML=""
 
     let deckId = document.getElementById("menu")
-    deckId.innerHTML=""
+    deckId.innerHTML=`<span id="white" class="title">White</span>
+    <span id="jack" class="title">Jack</span>`
 
     let logo=document.getElementById("logo")
     logo.innerHTML= `
