@@ -9,12 +9,12 @@ html{
     width: 100%;
     padding: 0;
     margin: 0;
-    background-color: #000000;
+    background-color: #270619;
     height: 100%;
     color: #e7118e;
 }
 body{
-    background-color: #ff41b0;
+    background-color: #ee7bbe;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -30,36 +30,36 @@ body{
     height: 40em;
     background-color: #ffffff;
     z-index: 1;
-    border: solid 2.5em red;
-    border-image: url('/storage/img/easter-bunny-rabbit-svgrepo-com.svg') space;
+    border: double 1.5em #ca338b;
+    /*border-image: url('/storage/img/easter-bunny-rabbit-svgrepo-com.svg') space;*/
     overflow: scroll;
 }
 .square_1::-webkit-scrollbar{
     display: none;
 }
 img{
-    width: 16em;
-}
+    width: 16em;}
 button{
+    position: relative;
+    top: 5em;
     font-family: "Acme", sans-serif;
     width: 6em;
     height: 2.4em;
     border-radius: 3em;
-    background-color: #ff41b0;
-    border: solid 0.2em #e7118e;
+    background-color: #f84fb2;
+    border: solid 0.2em #db0e86;
     color: #ffffff;
     font-weight: 600;
     margin: 0.5em;
     font-size: 0.9em;
     cursor: pointer;
 }
-
 span{
     color: #ff41b0;
-    text-decoration: underline;
-}
-
+    text-decoration: underline;}
 h1{
+    position: relative;
+    top: 1em;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -73,18 +73,16 @@ h2{
 .rules{
     text-align: start;
     width: 25em;
-    border: 0.6em solid #ff67c0;
-    border-left: 0.5em double #eeb4d6;
-    border-right: 0.5em double #eeb4d6;
+    border: 0.6em solid #db3f9a;
+    border-left: 0.5em double #ff80ca;
+    border-right: 0.5em double #ff80ca;
     border-radius: 1.5em 0em;
     padding: 0.5em;
     -webkit-padding-start: 1.5em;
     padding-bottom: 2.5em;
     padding-top: 2.5em;
-    -webkit-margin-start: 2em;
     position:relative;
 }
-
 #rulesCont{
     top: 5em;
     position: relative;
@@ -92,18 +90,21 @@ h2{
     justify-content: center;
     align-items: center;
 }
-
-#start,#showRules{
-    top:8em;
+li{
+    color:#501236;
+    margin-bottom: 0.4em;
 }
 
+
+#start,#showRules{
+    top:4em;
+}
 .menu_button{
     position: relative;
     width: 20em;
     height: 3em;
     font-size: 1em;
 }
-
 #back{
     top: 25em;
     position: absolute;
@@ -111,14 +112,14 @@ h2{
 
 .logoBun{
     position: relative;
-    top:5em;
+    top:2em;
     width: 15em;
     z-index: 5;
-    -webkit-filter: drop-shadow(2px 2px 0 #ca338b)
-        drop-shadow(-2px 2px 0 #ca338b)
-        drop-shadow(2px -2px 0 #ca338b)
-        drop-shadow(-2px -2px 0 #ca338b);
-    animation: boink 2s 0s;
+    filter: drop-shadow(2px 2px 0 #a1276e)
+        drop-shadow(-2px 2px 0 #a1276e)
+        drop-shadow(2px -2px 0 #a1276e)
+        drop-shadow(-2px -2px 0 #a1276e);
+    animation: boink 3s 0s;
 
 }
 @keyframes boink {
@@ -143,17 +144,49 @@ h2{
     54%{
         transform: translateX(0em) translateY(-3em) rotate(0deg);
     }
-    57%{
+    58%{
         transform: translateX(0em) translateY(0em) rotate(0deg);
     }
-    60%{
+    63%{
         transform: translateX(0em) translateY(-4em) rotate(0deg);
     }
-    64%{
+    69%{
         transform: translateX(0em) translateY(0em) rotate(0deg);
     }
+
 }
 button:hover{
-    color: #c2ffff;
+    color: #ffffff;
     transform: scale(110%);
+    animation: hoverWee 0.3s;
+}
+
+@keyframes hoverWee {
+    0%{
+        transform: scale(100%);
+    }
+    100%{
+        transform: scale(110%);
+    }
+    
+}
+
+.title{
+    text-align: center;
+    position: relative;
+    top: 3em;
+    font-size: 4.5em;
+    font-weight: 900;
+    color: #ffffff;
+    text-decoration: none;
+    filter: drop-shadow(2px 2px 0 #c52c85)
+        drop-shadow(-2px 2px 0 #c52c85)
+        drop-shadow(2px -2px 0 #c52c85)
+        drop-shadow(-2px -2px 0 #c52c85);
+}
+#white{
+    right: 2.5em;
+}
+#jack{
+    left: 2em;
 }
