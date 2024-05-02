@@ -1,5 +1,7 @@
+let array_p1 = []
+let sumOfCard = 0
+
 function fetchDeck(){
-    document.getElementById("body_style").style.background = "#a70808";
     let url = "https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
     let xhr = new XMLHttpRequest();
     xhr.open("GET",url,true);
@@ -28,7 +30,7 @@ function fetchDeck(){
             if (this.readyState === 4 && this.status === 200){
                 let response = JSON.parse(this.responseText)
                 console.log(response)
-                disstandCards(response)
+                displayCards(response)
             }else if(this.readyState === 4){
                 console.log("Error :(",this.statusText)
             }
@@ -40,15 +42,16 @@ function fetchDeck(){
     }
     xhr.send();
 }
-
 function fetchRules(){
+    let deckId = document.getElementById("menu")
+            deckId.innerHTML=``
     let rules=document.getElementById("rulesCont")
     rules.innerHTML=`
     <div class="rules" id="rules">
         <h2>- - - Rules - - -</h2>
         <li>Face cards are worth 10.</li>
-        <li>Ace is worth 11.</li>
-        <li>If </li>
+        <li>Ace is worth 11 or 1 depending if your cards total value is higher than 21 or not.</li>
+        <li>hello world!</li>
         <li>hi</li>
         <li>hi</li>
     </div>
@@ -58,7 +61,6 @@ function fetchRules(){
     let logo=document.getElementById("logo")
     logo.innerHTML=""
 }
-
 function drawCard(){
     deckdeck= document.getElementById("deckIdIs").innerText
     console.log("hola",deckdeck)
@@ -69,7 +71,7 @@ function drawCard(){
         if (this.readyState === 4 && this.status === 200){
             let response = JSON.parse(this.responseText)
             console.log(response)
-            disstandCards(response)
+            displayCards(response)
         }else if(this.readyState === 4){
             console.log("Error :(",this.statusText)
         }
@@ -78,16 +80,13 @@ function drawCard(){
 }
 
 function standCard(){
-
+    checkGame(sumOfCard)
 }
-
-let array_p1 = []
-
-function disstandCards(data){
+function displayCards(data){
     console.log(data.cards)
     arraysito = data.cards
     arraysito.forEach(card => {
-        console.log(card)
+        
         let cardImg = document.getElementById("cards")
         if(data.response === "error"){
             cardImg.innerHTML=`<p>Error</p>`
@@ -98,15 +97,49 @@ function disstandCards(data){
             cardImg.appendChild(imgcard);
             array_p1.push(card)
             console.log(array_p1)
+            value = card.value
+            if(value==="ACE"){
+                value = 11
+            }else if(value==="JACK" || value==="QUEEN"|| value==="KING" ){
+                value = 10
+            }else{
+                value = value
+            }
+            sumOfCard = sumOfCard+parseInt(value)
         }
     }
     );
+    array_p1.forEach(card => {
+        if(card.value === "ACE"){
+            if(sumOfCard>21){
+                sumOfCard = sumOfCard-10
+            }
+        } else{
+            sumOfCard = sumOfCard
+        }
+    }
+    );
+    console.log(sumOfCard)
+    checkGame(sumOfCard)
 }
-
+function checkGame(suma){
+    if (suma===21){
+        let deckId = document.getElementById("menu")
+        deckId.innerHTML=`<h1>You win!  <span id="deckIdIs">${suma}</span></h1>`
+        newButtons = document.getElementById("buttons")
+        newButtons.innerHTML=`
+            <button id="reset" onclick="resetGame()">Reset</button>`
+    } else if(suma>21){
+        let deckId = document.getElementById("menu")
+        deckId.innerHTML=`<h1>Better luck next time!   <span id="deckIdIs">${suma}</span></h1>`
+        newButtons = document.getElementById("buttons")
+        newButtons.innerHTML=`
+            <button id="reset" onclick="resetGame()">Reset</button>`
+    }else{
+        console.log("Not yet", suma)
+    }
+}
 function resetGame(){
-    array_p1 = []
-
-    document.getElementById("body_style").style.background = "#ee7bbe";
 
     let newButtons = document.getElementById("buttons")
     newButtons.innerHTML=`
@@ -135,4 +168,6 @@ function resetGame(){
         <path d="M90.65 95.95c-.66 0-1.27-.44-1.45-1.11c-.22-.8.25-1.62 1.05-1.84c.18-.05 4.39-1.18 8.46-1.32c4.43-.15 8.1 1.01 8.25 1.06a1.497 1.497 0 0 1-.91 2.85c-.03-.01-3.34-1.04-7.24-.92c-3.71.12-7.74 1.21-7.78 1.22c-.12.04-.25.06-.38.06z" fill="#ff85cc"></path><path d="M106.04 104.26c-.33 0-.67-.11-.95-.34c-.01-.01-1.96-1.54-5.91-2.47c-3.82-.9-7.61-.58-7.65-.58c-.81.07-1.55-.54-1.62-1.36c-.07-.83.54-1.55 1.36-1.62c.17-.02 4.31-.36 8.59.64c4.7 1.1 7.04 2.99 7.13 3.07c.64.53.73 1.47.21 2.11c-.3.36-.73.55-1.16.55z" fill="#ff85cc"></path><path d="M103.36 111.62c-.35 0-.7-.12-.98-.37c-.03-.02-2.75-2.37-5.29-3.58c-2.43-1.15-5.96-1.22-5.99-1.22a1.5 1.5 0 0 1 .02-3h.02c.17 0 4.21.07 7.24 1.5c2.92 1.39 5.85 3.92 5.97 4.02c.63.54.69 1.49.15 2.12c-.3.36-.72.53-1.14.53z" fill="#ff85cc"></path>
         </g>
     </svg>`
+    array_p1 = []
+    sumOfCard = 0
 }
